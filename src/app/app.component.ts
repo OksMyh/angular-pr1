@@ -9,17 +9,12 @@ export class AppComponent {
   show = true;
   login = false;
   register = true;
-  notFiled = (form) => {
-    console.log(form);
-    const requiredFiled = document.createElement('div');
-    if (!this.show) {
-      console.log(form.value);
-      requiredFiled.innerText = `${form.value}*blank field fill out`;
-      document.body.appendChild(requiredFiled);
-      requiredFiled.style.color = 'red';
-    } else {
-      requiredFiled.style.display = 'none';
-    }
+  error = '';
+  classes = {'error-empty-filed': false };
+  sendError = (element) => {
+    console.log(element);
+    this.error = 'some field empty or incorrect email';
+    this.classes = {'error-empty-filed': true };
   }
   onClickLogin = () => {
     this.show = false;

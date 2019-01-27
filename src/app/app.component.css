@@ -1,0 +1,13 @@
+.error-empty-filed {
+  width: auto;
+  padding: 10px;
+  margin: 10px;
+  color: red;
+  border:1px solid red;
+}
+.wrong-email{
+  border:2px solid red;
+  }
+.right-email{
+  border: 2px inset initial;
+}

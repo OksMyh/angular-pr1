@@ -24,13 +24,12 @@
            #nameRef="ngModel"
            name="name">
     <br><br>
-
     <label>email </label>
     <input type="email"
            ngModel
-           required
            email
-           #emailRef="ngModel"
+    [ngClass]="[emailRef.invalid && emailRef.touched ?'wrong-email':'right-email' ]"
+    #emailRef="ngModel"
            name="email">
     <br><br>
     <label>password</label>
@@ -40,11 +39,13 @@
            #passRef="ngModel"
            name="password">
     <button
-      (click)="nameRef.pristine || emailRef.pristine || passRef.pristine ? notFiled(anotherForm):sendForm(anotherForm)"
+      type="submit"
+      (click)="nameRef.pristine ||
+       emailRef.pristine ||
+       passRef.pristine ||
+       !emailRef.valid ? sendError(anotherForm):sendForm(anotherForm)"
     >Send</button>
+    <div [ngClass]="classes">{{error}}</div>
   </form>
 </div>
-
-
-<!--<div>{{sendForm}}</div>-->
 
