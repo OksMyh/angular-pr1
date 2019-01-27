@@ -4,29 +4,44 @@
   <button (click)="onClickRegistration()">registration</button>
 </div>
 
-  <div *ngIf="!show && login" >
-    <form #form='ngForm'>
-      <label>login </label>
-      <input type="text" name="login" ngModel>
-      <br>
-      <br>
-      <label>name </label>
-      <input type="text" name="email" ngModel>
-      <button (click)="sendForm(form)">Send</button>
-    </form>
-  </div>
-<div *ngIf="!show && register">
-  <form #anotherForm='ngForm'>
+<div *ngIf="!show && login">
+  <form #form='ngForm'>
     <label>login </label>
     <input type="text" name="login" ngModel>
     <br>
     <br>
     <label>name </label>
-    <input type="text" name="email" ngModel><br>
-    <br>
+    <input type="text" name="email" ngModel>
+    <button (click)="sendForm(form)">Send</button>
+  </form>
+</div>
+<div *ngIf="!show && register">
+  <form #anotherForm='ngForm'>
+    <label>name </label>
+    <input type="text"
+           ngModel
+           required
+           #nameRef="ngModel"
+           name="name">
+    <br><br>
+
+    <label>email </label>
+    <input type="email"
+           ngModel
+           required
+           email
+           #emailRef="ngModel"
+           name="email">
+    <br><br>
     <label>password</label>
-    <input type="password" name="password" ngModel>
-    <button (click)="sendForm(anotherForm)">Send</button>
+    <input type="password"
+           ngModel
+           required
+           #passRef="ngModel"
+           name="password">
+    <button
+      (click)="nameRef.pristine || emailRef.pristine || passRef.pristine ? notFiled(anotherForm):sendForm(anotherForm)"
+    >Send</button>
   </form>
 </div>
 
