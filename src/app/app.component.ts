@@ -10,11 +10,21 @@ export class AppComponent {
   login = false;
   register = true;
   error = '';
-  classes = {'error-empty-filed': false };
-  sendError = (element) => {
-    console.log(element);
-    this.error = 'some field empty or incorrect email';
-    this.classes = {'error-empty-filed': true };
+  classes = {'error-empty-filed': false};
+  formObj = {
+    name: '',
+    email: '',
+    pass: ''
+  };
+  sendError = () => {
+    console.log(this.formObj);
+    for (const property in this.formObj) {
+      if (this.formObj.hasOwnProperty(property) && (property == null)) {
+        console.log(property);
+        this.error = '*' + property + ` field empty or incorrect email`;
+        this.classes = {'error-empty-filed': true};
+      }
+    }
   }
   onClickLogin = () => {
     this.show = false;

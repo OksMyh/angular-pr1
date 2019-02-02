@@ -19,14 +19,14 @@
   <form #anotherForm='ngForm'>
     <label>name </label>
     <input type="text"
-           ngModel
+           [(ngModel)]="formObj.name"
            required
            #nameRef="ngModel"
            name="name">
     <br><br>
     <label>email </label>
     <input type="email"
-           ngModel
+           [(ngModel)]="formObj.email"
            email
     [ngClass]="[emailRef.invalid && emailRef.touched ?'wrong-email':'right-email' ]"
     #emailRef="ngModel"
@@ -34,7 +34,7 @@
     <br><br>
     <label>password</label>
     <input type="password"
-           ngModel
+           [(ngModel)]="formObj.pass"
            required
            #passRef="ngModel"
            name="password">
@@ -43,7 +43,7 @@
       (click)="nameRef.pristine ||
        emailRef.pristine ||
        passRef.pristine ||
-       !emailRef.valid ? sendError(anotherForm):sendForm(anotherForm)"
+       !emailRef.valid ? sendError():sendForm(anotherForm)"
     >Send</button>
     <div [ngClass]="classes">{{error}}</div>
   </form>
