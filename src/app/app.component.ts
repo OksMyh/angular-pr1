@@ -18,12 +18,17 @@ export class AppComponent {
   };
   sendError = () => {
     console.log(this.formObj);
+    this.error = '';
+    const  symbol = this.formObj.email.includes('@');
     for (const property in this.formObj) {
-      if (this.formObj.hasOwnProperty(property) && (property == null)) {
+      if (this.formObj.hasOwnProperty(property) && (this.formObj[property] == false) || symbol == false ) {
         console.log(property);
-        this.error = '*' + property + ` field empty or incorrect email`;
+        this.error += '*' + property + ` field empty or incorrect email `;
         this.classes = {'error-empty-filed': true};
       }
+      // else if (symbol == false && this.formObj.pass == true && (this.formObj.name == true) ){
+      //   this.error += '*email'  + ` field empty or incorrect email`;
+      // }
     }
   }
   onClickLogin = () => {
